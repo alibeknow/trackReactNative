@@ -4,7 +4,6 @@ module.exports = {
     es6: true,
   },
   extends: [
-    'plugin:react/recommended',
     'airbnb',
   ],
   globals: {
@@ -18,9 +17,6 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: [
-    'react',
-  ],
   rules: {
   },
 };
