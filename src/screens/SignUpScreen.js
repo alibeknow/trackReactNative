@@ -1,42 +1,23 @@
-import React, { useState, useContext } from 'react';
+import React, {  useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Button, Text, Input } from 'react-native-elements';
-import Spacer from '../components/Spacer';
 import { Context as AuthContext } from '../context/AuthContext';
+import AuthForm from '../components//AuthForm';
+import navLink from '../components/NavLink';
+import NavLink from '../components/NavLink';
 
 const SignUpScreen = ({ navigation }) => {
   const { state, signup } = useContext(AuthContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  console.log(state);
   return (
     <View style={StyleSheet.container}>
-      <Spacer>
-        <Text h3>Sign Up for Tracker</Text>
-      </Spacer>
-      <Spacer>
-        <Input
-          label="Email"
-          value={email}
-          onChangeText={setEmail}
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
-      </Spacer>
-      <Spacer />
-      <Input
-        label="Password"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-      { state.errorMessage
-        ? <Text style={styles.errorMessage}>{state.errorMessage}</Text>
-        : null}
-      <Spacer />
-      <Button ещеду="Sign Up" onPress={() => signup({ email, password })} />
+      <AuthForm
+      headerText="sign up for Tracker"
+      errorMessage={state.errorMessage}
+      submitButtonText="sign up"
+      onSubmit={signup}
+      ></AuthForm>
+      <NavLink
+      routeName="Signin"
+      text="Already have an account? SignIN"></NavLink>
     </View>
   );
 };
@@ -47,14 +28,11 @@ SignUpScreen.navigationOptions = () => ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'center', 
     marginBottom: 200,
   },
-  errorMessage: {
-    fontSize: 16,
-    color: 'red',
-    marginLeft: 15,
-    marginTop: 15,
-  },
+  link:{
+    color:'blue'
+  }
 });
 export default SignUpScreen;
