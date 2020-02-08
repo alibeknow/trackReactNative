@@ -1,23 +1,21 @@
 import React, {  useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
-import AuthForm from '../components//AuthForm';
-import navLink from '../components/NavLink';
+import AuthForm from '../components/AuthForm';
 import NavLink from '../components/NavLink';
 
 const SignUpScreen = ({ navigation }) => {
   const { state, signup } = useContext(AuthContext);
   return (
-    <View style={StyleSheet.container}>
+    <View style={styles.container}>
       <AuthForm
       headerText="sign up for Tracker"
       errorMessage={state.errorMessage}
       submitButtonText="sign up"
-      onSubmit={signup}
-      ></AuthForm>
+      onSubmit={signup}/>
       <NavLink
       routeName="Signin"
-      text="Already have an account? SignIN"></NavLink>
+      text="Already have an account? SignIN"/>
     </View>
   );
 };
