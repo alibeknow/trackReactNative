@@ -3,19 +3,24 @@ import { View, StyleSheet } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
 import AuthForm from '../components/AuthForm';
 import NavLink from '../components/NavLink';
+import {NavigationEvents} from 'react-navigation'
 
 const SignUpScreen = ({ navigation }) => {
-  const { state, signup } = useContext(AuthContext);
+  const { state, signup,clearErrorMessage} = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
+    <NavigationEvents
+     onWillBlur={()=>{clearErrorMessage()}}
+     />
       <AuthForm
       headerText="sign up for Tracker"
       errorMessage={state.errorMessage}
       submitButtonText="sign up"
       onSubmit={signup}/>
       <NavLink
-      routeName="Signin"
-      text="Already have an account? SignIN"/>
+      routeName="SignIn"
+      text="Already have an account? SignIn"/>
     </View>
   );
 };
@@ -25,9 +30,10 @@ SignUpScreen.navigationOptions = () => ({
 });
 const styles = StyleSheet.create({
   container: {
+    padding:30,
     flex: 1,
     justifyContent: 'center', 
-    marginBottom: 200,
+    marginBottom: 250,
   },
   link:{
     color:'blue'
